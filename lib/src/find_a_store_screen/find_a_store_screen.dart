@@ -11,6 +11,17 @@ class FindStoreScreen extends StatefulWidget {
 }
 
 class _FindStoreScreenState extends State<FindStoreScreen> {
+  List<String> notes = [
+    "fluttermaster.com",
+    "Update Android Studio to 3.3",
+    "Implement ListView widget",
+    "Demo ListView simplenote app",
+    "Fixing app color",
+    "Create new note screen",
+    "Persist notes data",
+    "Add screen transition animation",
+    "Something long Something long Something long Something long Something long Something long",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +134,162 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                     ),
                     const SizedBox(
                       height: 20,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 5),
+                      decoration: BoxDecoration(
+                          color: const Color(0xffEBF2EF),
+                          border: Border.all(
+                              width: 1, color: Theme.of(context).primaryColor),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(12))),
+                      child: Row(
+                        children: [
+                          const Image(
+                              image: AssetImage('assets/images/coffee.png')),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Chandigarh sector 35",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Open until 12:45 am   4.7 km away",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Radio(
+                              value: "Chandigarh",
+                              groupValue: "Chandigarh",
+                              onChanged: (String? value) {},
+                              fillColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.disabled)) {
+                                  return Theme.of(context).primaryColor;
+                                }
+                                return Theme.of(context).primaryColor;
+                              })),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 5),
+                      decoration: const BoxDecoration(
+                          color: Color(0xffFAFAFA),
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      child: Row(
+                        children: [
+                          const Image(
+                              image: AssetImage('assets/images/coffee.png')),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Chandigarh sector 35",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Open until 12:45 am   4.7 km away",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Radio(
+                              value: "Chandigarh",
+                              groupValue: "Chandigarh1",
+                              onChanged: (String? value) {},
+                              fillColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.disabled)) {
+                                  return Theme.of(context).primaryColor;
+                                }
+                                return Theme.of(context).primaryColor;
+                              })),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 5),
+                      decoration: const BoxDecoration(
+                          color: Color(0xffFAFAFA),
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      child: Row(
+                        children: [
+                          const Image(
+                              image: AssetImage('assets/images/coffee.png')),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Chandigarh sector 35",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "Open until 12:45 am   4.7 km away",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              )
+                            ],
+                          ),
+                          const Spacer(
+                            flex: 1,
+                          ),
+                          Radio(
+                              value: "Chandigarh",
+                              groupValue: "Chandigarh1",
+                              onChanged: (String? value) {},
+                              fillColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                      (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.disabled)) {
+                                  return Theme.of(context).primaryColor;
+                                }
+                                return Theme.of(context).primaryColor;
+                              })),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Center(
                       child: SizedBox(
