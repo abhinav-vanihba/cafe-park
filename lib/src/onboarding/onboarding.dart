@@ -1,6 +1,6 @@
+import 'package:cafe_park/src/validation_screen/validation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -90,7 +90,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: MaterialButton(
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ValidationScreen(phoneNumber: phoneNumber)),
+                    );
+                  },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         8.0), // Set the desired border radius
