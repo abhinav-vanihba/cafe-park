@@ -1,3 +1,4 @@
+import 'package:cafe_park/src/validation_success_screen/validation_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -96,10 +97,12 @@ class _ValidationScreenState extends State<ValidationScreen> {
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => SecondRoute()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ValidationSuccessScreen()),
+                    );
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
