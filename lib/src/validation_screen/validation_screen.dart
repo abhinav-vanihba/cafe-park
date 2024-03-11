@@ -73,16 +73,16 @@ class _ValidationScreenState extends State<ValidationScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "If you didn’t receive a code? ",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
                     "Resend",
-                    style: const TextStyle(fontSize: 13),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ],
               ),
