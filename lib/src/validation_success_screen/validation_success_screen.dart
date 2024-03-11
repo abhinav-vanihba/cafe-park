@@ -1,3 +1,4 @@
+import 'package:cafe_park/src/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ValidationSuccessScreen extends StatefulWidget {
@@ -48,7 +49,12 @@ class _ValidationSuccessState extends State<ValidationSuccessScreen> {
               child: MaterialButton(
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                       8.0), // Set the desired border radius
