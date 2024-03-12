@@ -1,5 +1,4 @@
 import 'package:cafe_park/src/validation_success_screen/validation_success_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -98,11 +97,11 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                     const SizedBox(
                       height: 2,
                     ),
-                    Divider(
-                      color: Colors.grey,
+                    const Divider(
+                      color: Color(0xffE8E8E8),
                       thickness: 3,
-                      indent: MediaQuery.of(context).size.width / 3,
-                      endIndent: MediaQuery.of(context).size.width / 3,
+                      indent: 175,
+                      endIndent: 175,
                     ),
                     const SizedBox(
                       height: 20,
@@ -330,8 +329,8 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                     ),
                     Center(
                       child: SizedBox(
-                        height: 50.0, // Set the desired height
-                        width: 200.0, // Set the desired width
+                        height: 48.0, // Set the desired height
+                        width: 370.0, // Set the desired width
                         child: MaterialButton(
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
