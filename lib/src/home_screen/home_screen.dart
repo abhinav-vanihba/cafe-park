@@ -40,6 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: const Color(0xff7A7A7A),
         showSelectedLabels: true,
         showUnselectedLabels: true,
+        enableFeedback: false,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

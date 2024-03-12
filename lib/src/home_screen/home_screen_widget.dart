@@ -44,7 +44,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
               children: [
                 Column(
                   children: [
-                    const ImageIcon(AssetImage('assets/images/coin.png')),
+                    const Image(image: AssetImage('assets/images/coin.png')),
                     const Text(
                       'Coins',
                       style: TextStyle(
@@ -68,7 +68,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                 ),
                 Column(
                   children: [
-                    const ImageIcon(AssetImage('assets/images/Wallet.png')),
+                    const Image(image: AssetImage('assets/images/Wallet.png')),
                     const Text(
                       'Wallet',
                       style: TextStyle(
@@ -154,7 +154,9 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                       borderRadius: BorderRadius.all(Radius.circular(8))),
                   child: const Row(
                     children: [
-                      ImageIcon(AssetImage('assets/images/colored_wallet.png')),
+                      Image(
+                          image:
+                              AssetImage('assets/images/colored_wallet.png')),
                       SizedBox(
                         width: 10,
                       ),
@@ -183,7 +185,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                           topRight: Radius.circular(8))),
                   child: const Row(
                     children: [
-                      ImageIcon(AssetImage('assets/images/star.png')),
+                      Image(image: AssetImage('assets/images/star.png')),
                       SizedBox(
                         width: 10,
                       ),
