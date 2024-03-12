@@ -402,49 +402,46 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0.0, // Remove the app bar shadow
       automaticallyImplyLeading: false,
-      centerTitle: false,
       title: Align(
         alignment: Alignment.centerLeft,
-        child: Transform(
-            // you can forcefully translate values left side using Transform
-            transform: Matrix4.translationValues(
-                -MediaQuery.of(context).size.width / 2 + 100, 0.0, 0.0),
-            child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Row(children: [
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // Handle Find a store button tap
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FindStoreScreen()),
-                      );
-                    },
-                    label: const Text(
-                      'Find a store',
-                      style: TextStyle(color: Colors.grey),
+        child: Row(
+          children: [
+            const ImageIcon(
+              AssetImage('assets/images/shop-window.png'),
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Handle Find a store button tap
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FindStoreScreen(),
                     ),
-                    style: ButtonStyle(
-                      iconSize: MaterialStateProperty.all(15),
-
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.transparent),
-                      elevation: MaterialStateProperty.all<double>(
-                          0.0), // Remove the button elevation
-                    ),
-                    icon: const Icon(
-                      CupertinoIcons.chevron_down,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const ImageIcon(
-                      // Your custom icon here
-                      AssetImage(
-                          'assets/images/shop-window.png') // Set the size of your custom icon
-                      ),
-                ]))),
+                  );
+                },
+                label: const Text(
+                  'Find a store',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                style: ButtonStyle(
+                  iconSize: MaterialStateProperty.all(15),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.transparent),
+                  elevation: MaterialStateProperty.all<double>(
+                      0.0), // Remove the button elevation
+                ),
+                icon: const Icon(
+                  CupertinoIcons.chevron_down,
+                  color: Colors.grey,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
+
       actions: [
         IconButton(
           icon: const ImageIcon(AssetImage('assets/images/search.png')),

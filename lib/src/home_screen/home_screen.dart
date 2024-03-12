@@ -1,4 +1,5 @@
 import 'package:cafe_park/src/home_screen/home_screen_widget.dart';
+import 'package:cafe_park/src/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const HomeScreenWidget(),
     const ImageIcon(AssetImage('assets/images/Document.png')),
     const ImageIcon(AssetImage('assets/images/Present.png')),
-    const ImageIcon(AssetImage('assets/images/Profile-Fill.png')),
+    const ProfileScreen(),
   ];
 
   int pageIndex = 0;
