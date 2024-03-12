@@ -44,8 +44,8 @@ class _ValidationSuccessState extends State<ValidationSuccessScreen> {
               height: 20,
             ),
             SizedBox(
-              height: 50.0, // Set the desired height
-              width: 200.0, // Set the desired width
+              height: 48.0, // Set the desired height
+              width: 327.0, // Set the desired width
               child: MaterialButton(
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,

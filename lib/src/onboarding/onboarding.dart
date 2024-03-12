@@ -29,6 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Center(
             child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,8 +37,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               CarouselSlider(
                 options: CarouselOptions(
                   autoPlay: true,
-                  aspectRatio: 2.0,
-                  enlargeCenterPage: false,
+                  height: 300,
+                  initialPage: 0,
+                  padEnds: true,
+                  pageSnapping: false,
+                  enableInfiniteScroll: false,
                   onPageChanged: (index, reason) {
                     setState(() {
                       currentIndex = index;
@@ -85,8 +89,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 height: 20,
               ),
               SizedBox(
-                height: 50.0, // Set the desired height
-                width: 200.0, // Set the desired width
+                height: 56.0, // Set the desired height
+                width: 327.0, // Set the desired width
                 child: MaterialButton(
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,

@@ -22,6 +22,7 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
     "Add screen transition animation",
     "Something long Something long Something long Something long Something long Something long",
   ];
+  var selectedIndex = 'Chandigarh1';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,12 +140,18 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 30),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
-                      decoration: BoxDecoration(
-                          color: const Color(0xffEBF2EF),
-                          border: Border.all(
-                              width: 1, color: Theme.of(context).primaryColor),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(12))),
+                      decoration: selectedIndex == 'Chandigarh1'
+                          ? BoxDecoration(
+                              color: const Color(0xffEBF2EF),
+                              border: Border.all(
+                                  width: 1,
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)))
+                          : const BoxDecoration(
+                              color: Color(0xffFAFAFA),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
                       child: Row(
                         children: [
                           const Image(
@@ -172,9 +179,13 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                             flex: 1,
                           ),
                           Radio(
-                              value: "Chandigarh",
-                              groupValue: "Chandigarh",
-                              onChanged: (String? value) {},
+                              value: selectedIndex,
+                              groupValue: "Chandigarh1",
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedIndex = 'Chandigarh1';
+                                });
+                              },
                               fillColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
@@ -193,9 +204,18 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 30),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
-                      decoration: const BoxDecoration(
-                          color: Color(0xffFAFAFA),
-                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      decoration: selectedIndex == 'Chandigarh2'
+                          ? BoxDecoration(
+                              color: const Color(0xffEBF2EF),
+                              border: Border.all(
+                                  width: 1,
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)))
+                          : const BoxDecoration(
+                              color: Color(0xffFAFAFA),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
                       child: Row(
                         children: [
                           const Image(
@@ -223,9 +243,13 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                             flex: 1,
                           ),
                           Radio(
-                              value: "Chandigarh",
-                              groupValue: "Chandigarh1",
-                              onChanged: (String? value) {},
+                              value: selectedIndex,
+                              groupValue: "Chandigarh2",
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedIndex = 'Chandigarh2';
+                                });
+                              },
                               fillColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
@@ -244,9 +268,18 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 30),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
-                      decoration: const BoxDecoration(
-                          color: Color(0xffFAFAFA),
-                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      decoration: selectedIndex == 'Chandigarh3'
+                          ? BoxDecoration(
+                              color: const Color(0xffEBF2EF),
+                              border: Border.all(
+                                  width: 1,
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)))
+                          : const BoxDecoration(
+                              color: Color(0xffFAFAFA),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
                       child: Row(
                         children: [
                           const Image(
@@ -274,9 +307,13 @@ class _FindStoreScreenState extends State<FindStoreScreen> {
                             flex: 1,
                           ),
                           Radio(
-                              value: "Chandigarh",
-                              groupValue: "Chandigarh1",
-                              onChanged: (String? value) {},
+                              value: selectedIndex,
+                              groupValue: "Chandigarh3",
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedIndex = 'Chandigarh3';
+                                });
+                              },
                               fillColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {

@@ -1,7 +1,6 @@
 import 'package:cafe_park/src/find_a_store_screen/find_a_store_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -320,70 +319,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icon(Icons.chevron_right_outlined, color: Colors.white)
                     ],
                   ))),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/beverage.png')),
-                    Text("Beverages")
-                  ],
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/food.png')),
-                    Text("Food")
-                  ],
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/meal.png')),
-                    Text("Meal Combo")
-                  ],
-                )
-              ],
+          CustomGridRow(data: [
+            CustomGridRowData(
+              text: "Beverages",
+              image: 'assets/images/beverage.png',
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/coffee.png')),
-                    Text("Coffee")
-                  ],
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/quick_bite.png')),
-                    Text("Quick Bites")
-                  ],
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Column(
-                  children: [
-                    Image(image: AssetImage('assets/images/merchandise.png')),
-                    Text("Merchandise")
-                  ],
-                )
-              ],
+            CustomGridRowData(
+              text: "Food",
+              image: 'assets/images/food.png',
             ),
-          )
+            CustomGridRowData(
+              text: "Meal Combo",
+              image: 'assets/images/meal.png',
+            ),
+          ]),
+          CustomGridRow(data: [
+            CustomGridRowData(
+              text: "Coffee",
+              image: 'assets/images/coffee.png',
+            ),
+            CustomGridRowData(
+              text: "Quick Bites",
+              image: 'assets/images/quick_bite.png',
+            ),
+            CustomGridRowData(
+              text: "Merchandise",
+              image: 'assets/images/merchandise.png',
+            ),
+          ]),
         ],
       )),
     ),
@@ -426,6 +389,41 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class CustomGridRow extends StatelessWidget {
+  final List<CustomGridRowData> data;
+
+  const CustomGridRow({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          for (int i = 0; i < data.length; i++)
+            Expanded(
+              child: Column(
+                children: [
+                  Image(image: AssetImage(data[i].image)),
+                  Text(data[i].text),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomGridRowData {
+  final String text;
+  final String image;
+
+  CustomGridRowData({required this.text, required this.image});
 }
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -486,19 +484,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.search),
+          icon: const ImageIcon(AssetImage('assets/images/search.png')),
           onPressed: () {
             // Handle search icon tap
           },
         ),
         IconButton(
-          icon: const Icon(Icons.chat),
+          icon: const ImageIcon(AssetImage('assets/images/chat4.png')),
           onPressed: () {
             // Handle chat icon tap
           },
         ),
         IconButton(
-          icon: const Icon(Icons.person_2_outlined),
+          icon: const ImageIcon(AssetImage('assets/images/person-circle.png')),
           onPressed: () {
             // Handle profile icon tap
           },
