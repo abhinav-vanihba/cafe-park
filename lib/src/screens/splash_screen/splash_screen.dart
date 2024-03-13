@@ -1,4 +1,4 @@
-import 'package:cafe_park/src/onboarding/onboarding.dart';
+import 'package:cafe_park/src/screens/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

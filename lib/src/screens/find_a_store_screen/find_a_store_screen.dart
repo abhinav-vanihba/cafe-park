@@ -1,4 +1,4 @@
-import 'package:cafe_park/src/validation_success_screen/validation_success_screen.dart';
+import 'package:cafe_park/src/screens/validation_success_screen/validation_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

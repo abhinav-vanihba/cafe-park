@@ -1,4 +1,4 @@
-import 'package:cafe_park/src/validation_screen/validation_screen.dart';
+import 'package:cafe_park/src/screens/validation_screen/validation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';

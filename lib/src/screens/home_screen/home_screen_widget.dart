@@ -1,4 +1,4 @@
-import 'package:cafe_park/src/find_a_store_screen/find_a_store_screen.dart';
+import 'package:cafe_park/src/screens/find_a_store_screen/find_a_store_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

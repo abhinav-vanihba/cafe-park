@@ -1,4 +1,4 @@
-import 'package:cafe_park/src/home_screen/home_screen.dart';
+import 'package:cafe_park/src/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class ValidationSuccessScreen extends StatefulWidget {

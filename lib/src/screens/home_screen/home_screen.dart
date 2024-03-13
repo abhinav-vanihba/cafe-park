@@ -1,5 +1,6 @@
-import 'package:cafe_park/src/home_screen/home_screen_widget.dart';
-import 'package:cafe_park/src/profile_screen/profile_screen.dart';
+import 'package:cafe_park/src/screens/home_screen/home_screen_widget.dart';
+import 'package:cafe_park/src/screens/menu_screen/menu_screen.dart';
+import 'package:cafe_park/src/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _pages = [
     const HomeScreenWidget(),
-    const ImageIcon(AssetImage('assets/images/Document.png')),
+    const MenuScreen(),
     const ImageIcon(AssetImage('assets/images/Present.png')),
     const ProfileScreen(),
   ];
