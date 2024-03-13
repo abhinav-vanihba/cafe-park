@@ -1,7 +1,7 @@
 class CoffeeItemModel {
   String itemName;
   String itemCategory;
-  String itemPrice;
+  int itemPrice;
   bool isNewLaunched;
 
   CoffeeItemModel({

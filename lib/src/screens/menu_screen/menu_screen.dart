@@ -12,139 +12,225 @@ class MenuScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final coffeeItems = ref.watch(fetchCoffeeListProvider);
     final cart = ref.watch(cartProvider);
+
+    int totalItemCount = cart.length;
+    int totalPrice = 0;
+
+    // Calculate total price
+    for (CoffeeItemModel item in cart) {
+      totalPrice += item.itemPrice;
+    }
+
     return Scaffold(
         appBar: const PreferredSize(
           preferredSize:
               Size.fromHeight(70.0), // Adjust the preferred height as needed
           child: CustomAppBar(),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Nearest pickup- 4.7km away",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFFA6A6A6),
-                        fontSize: 14),
-                  ),
-                ],
-              ),
-              const Row(
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Chandigarh sector 35",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF307A59),
-                        fontSize: 18),
-                  ),
-                  Icon(
-                    CupertinoIcons.chevron_down,
-                    color: Color(0xFF307A59),
-                  ),
-                ],
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFAFAFA), // Background color
-                    border: Border.all(width: 1, color: Colors.grey),
-                    borderRadius:
-                        BorderRadius.circular(8.0), // Rounded border radius
-                  ),
-                  child: TextField(
-                    decoration: const InputDecoration(
-                      hintText: 'Search Your Menus',
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                      ),
-                      border: InputBorder.none, // Remove default border
-                    ),
-                    onChanged: (value) {
-                      // Handle search input
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                  height: 328,
-                  width: MediaQuery.of(context).size.width,
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFEBF2EF), // Background color
-                    ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "New Launched",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          switch (coffeeItems) {
-                            AsyncData(:final value) => SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    for (CoffeeItemModel item in value)
-                                      if (item.isNewLaunched)
-                                        Row(
-                                          children: [
-                                            CustomCoffeeItem(data: item),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                          ],
-                                        ),
-                                  ],
-                                )),
-                            AsyncError() =>
-                              const Text('Oops, something unexpected happened'),
-                            _ => const CircularProgressIndicator(),
-                          },
-                        ]),
-                  )),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
+        body: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    width: 20,
+                    height: 10,
                   ),
-                  switch (coffeeItems) {
-                    AsyncData(:final value) => Text(
-                        "Recommended (${value.where((element) => !element.isNewLaunched).length})",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 18),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
                       ),
-                    AsyncError() => const Text('Loading..'),
-                    _ => const CircularProgressIndicator(),
-                  },
+                      Text(
+                        "Nearest pickup- 4.7km away",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFFA6A6A6),
+                            fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Chandigarh sector 35",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF307A59),
+                            fontSize: 18),
+                      ),
+                      Icon(
+                        CupertinoIcons.chevron_down,
+                        color: Color(0xFF307A59),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFAFAFA), // Background color
+                        border: Border.all(width: 1, color: Colors.grey),
+                        borderRadius:
+                            BorderRadius.circular(8.0), // Rounded border radius
+                      ),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          hintText: 'Search Your Menus',
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                          border: InputBorder.none, // Remove default border
+                        ),
+                        onChanged: (value) {
+                          // Handle search input
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      height: 328,
+                      width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFEBF2EF), // Background color
+                        ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "New Launched",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              switch (coffeeItems) {
+                                AsyncData(:final value) =>
+                                  SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          for (CoffeeItemModel item in value)
+                                            if (item.isNewLaunched)
+                                              Row(
+                                                children: [
+                                                  CustomCoffeeItem(data: item),
+                                                  const SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                ],
+                                              ),
+                                        ],
+                                      )),
+                                AsyncError() => const Text(
+                                    'Oops, something unexpected happened'),
+                                _ => const CircularProgressIndicator(),
+                              },
+                            ]),
+                      )),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      switch (coffeeItems) {
+                        AsyncData(:final value) => Text(
+                            "Recommended (${value.where((element) => !element.isNewLaunched).length})",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 18),
+                          ),
+                        AsyncError() => const Text('Loading..'),
+                        _ => const CircularProgressIndicator(),
+                      },
+                    ],
+                  )
                 ],
-              )
-            ],
-          ),
+              ),
+            )),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8))),
+              height: 65, // Adjust the height as needed
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '$totalItemCount items ₹$totalPrice',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12),
+                    ),
+                    const Text(
+                      'Extra Charges May Apply',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12),
+                    ),
+                  ],
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                TextButton(
+                    onPressed: () {
+                      // Add your onTap logic here
+                    },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                      ),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.white,
+                      ),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          "View Cart",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(
+                          CupertinoIcons.chevron_right,
+                          color: Color(0xFF307A59),
+                          size: 12,
+                        ),
+                      ],
+                    ))
+              ]),
+            ),
+          ],
         ));
   }
 }
@@ -241,7 +327,7 @@ class CustomCoffeeItem extends ConsumerWidget {
                         Row(
                           children: [
                             Text(
-                              data.itemPrice,
+                              "₹${data.itemPrice}",
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w400),
                             ),

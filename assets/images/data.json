@@ -2,49 +2,49 @@
   {
     "itemName": "Espresso Machine",
     "itemCategory": "Appliances",
-    "itemPrice": "₹319",
+    "itemPrice": 319,
     "isNewLaunched": true
   },
   {
     "itemName": "Arabica Coffee Beans",
     "itemCategory": "Coffee Beans",
-    "itemPrice": "₹150",
+    "itemPrice": 150,
     "isNewLaunched": true
   },
   {
     "itemName": "Travel Coffee Mug",
     "itemCategory": "Accessories",
-    "itemPrice": "₹250",
+    "itemPrice": 250,
     "isNewLaunched": true
   },
   {
     "itemName": "French Press",
     "itemCategory": "Brewing Tools",
-    "itemPrice": "₹410",
+    "itemPrice": 410,
     "isNewLaunched": false
   },
   {
     "itemName": "Cappuccino Cups Set",
     "itemCategory": "Tableware",
-    "itemPrice": "₹203",
+    "itemPrice": 203,
     "isNewLaunched": false
   },
   {
     "itemName": "Coffee Grinder",
     "itemCategory": "Appliances",
-    "itemPrice": "₹219",
+    "itemPrice": 219,
     "isNewLaunched": false
   },
   {
     "itemName": "Cold Brew Maker",
     "itemCategory": "Brewing Tools",
-    "itemPrice": "₹100",
+    "itemPrice": 100,
     "isNewLaunched": false
   },
   {
     "itemName": "Hot Brew Maker",
     "itemCategory": "Brewing Tools",
-    "itemPrice": "₹120",
+    "itemPrice": 120,
     "isNewLaunched": false
   }
 ]
