@@ -151,7 +151,7 @@ class MenuScreen extends ConsumerWidget {
                                 width: 20,
                               ),
                               Text(
-                                "Recommended (${value.where((element) => !element.isNewLaunched).length})",
+                                "Recommended (${value.length})",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w700, fontSize: 18),
                               ),
