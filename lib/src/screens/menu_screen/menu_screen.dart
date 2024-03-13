@@ -1,4 +1,5 @@
 import 'package:cafe_park/src/model/CoffeeItemModel.dart';
+import 'package:cafe_park/src/provider/cart_provider.dart';
 import 'package:cafe_park/src/provider/coffee_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class MenuScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final coffeeItems = ref.watch(fetchCoffeeListProvider);
+    final cart = ref.watch(cartProvider);
     return Scaffold(
         appBar: const PreferredSize(
           preferredSize:
@@ -105,14 +107,15 @@ class MenuScreen extends ConsumerWidget {
                                 child: Row(
                                   children: [
                                     for (CoffeeItemModel item in value)
-                                      Row(
-                                        children: [
-                                          CustomCoffeeItem(data: item),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                        ],
-                                      ),
+                                      if (item.isNewLaunched)
+                                        Row(
+                                          children: [
+                                            CustomCoffeeItem(data: item),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                          ],
+                                        ),
                                   ],
                                 )),
                             AsyncError() =>
@@ -121,6 +124,25 @@ class MenuScreen extends ConsumerWidget {
                           },
                         ]),
                   )),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  switch (coffeeItems) {
+                    AsyncData(:final value) => Text(
+                        "Recommended (${value.where((element) => !element.isNewLaunched).length})",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 18),
+                      ),
+                    AsyncError() => const Text('Loading..'),
+                    _ => const CircularProgressIndicator(),
+                  },
+                ],
+              )
             ],
           ),
         ));
@@ -160,13 +182,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class CustomCoffeeItem extends StatelessWidget {
+class CustomCoffeeItem extends ConsumerWidget {
   final CoffeeItemModel data;
 
   const CustomCoffeeItem({super.key, required this.data});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
         height: 250,
         width: 250,
@@ -189,7 +211,7 @@ class CustomCoffeeItem extends StatelessWidget {
               flex: 1,
             ),
             SizedBox(
-                height: 90,
+                height: 100,
                 width: 230,
                 child: Container(
                   padding: const EdgeInsets.all(10),
@@ -226,19 +248,35 @@ class CustomCoffeeItem extends StatelessWidget {
                             const Spacer(
                               flex: 1,
                             ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(5.0),
+                            TextButton(
+                              onPressed: () {
+                                // Add your onTap logic here
+                                ref.read(cartProvider.notifier).addItem(data);
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<
+                                    EdgeInsetsGeometry>(
+                                  const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 2),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Theme.of(context).primaryColor,
+                                ),
+                                shape:
+                                    MaterialStateProperty.all<OutlinedBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
                               ),
                               child: const Text(
                                 "Order Now",
                                 style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400),
+                                  fontSize: 10,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             )
                           ],

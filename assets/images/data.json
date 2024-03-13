@@ -39,12 +39,12 @@
     "itemName": "Cold Brew Maker",
     "itemCategory": "Brewing Tools",
     "itemPrice": "₹100",
-    "isNewLaunched": true
+    "isNewLaunched": false
   },
   {
     "itemName": "Hot Brew Maker",
     "itemCategory": "Brewing Tools",
     "itemPrice": "₹120",
-    "isNewLaunched": true
+    "isNewLaunched": false
   }
 ]
