@@ -11,6 +11,18 @@ class CartState extends StateNotifier<List<CoffeeItemModel>> {
   void removeItem(CoffeeItemModel item) {
     state = List.from(state)..remove(item);
   }
+
+  bool isItemInCart(CoffeeItemModel item) {
+    return state.contains(item);
+  }
+
+  int getCount() {
+    return state.length;
+  }
+
+  int getItemCount(CoffeeItemModel item) {
+    return state.where((cartItem) => cartItem == item).length;
+  }
 }
 
 final cartProvider = StateNotifierProvider<CartState, List<CoffeeItemModel>>(

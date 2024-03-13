@@ -140,22 +140,43 @@ class MenuScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      switch (coffeeItems) {
-                        AsyncData(:final value) => Text(
-                            "Recommended (${value.where((element) => !element.isNewLaunched).length})",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
+                  switch (coffeeItems) {
+                    AsyncData(:final value) => Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Recommended (${value.where((element) => !element.isNewLaunched).length})",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 18),
+                              ),
+                            ],
                           ),
-                        AsyncError() => const Text('Loading..'),
-                        _ => const CircularProgressIndicator(),
-                      },
-                    ],
-                  )
+                          for (int i = 0; i < value.length; i += 2)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: CustomGridItem(item: value[i]),
+                                ),
+                                const SizedBox(
+                                    width: 16.0), // Adjust spacing as needed
+                                if (i + 1 < value.length)
+                                  Expanded(
+                                    child: CustomGridItem(item: value[i + 1]),
+                                  ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    AsyncError() => const Text('Loading..'),
+                    _ => const CircularProgressIndicator(),
+                  },
                 ],
               ),
             )),
@@ -232,6 +253,166 @@ class MenuScreen extends ConsumerWidget {
             ),
           ],
         ));
+  }
+}
+
+class CustomGridItem extends ConsumerWidget {
+  final CoffeeItemModel item;
+
+  const CustomGridItem({super.key, required this.item});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isInCart = ref.read(cartProvider.notifier).isItemInCart(item);
+
+    return Container(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(clipBehavior: Clip.none, children: [
+            SizedBox(
+              width: 158.0,
+              height: 158.0,
+              child:
+                  // Image
+                  ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: const Image(
+                  image: AssetImage("assets/images/coffee-background.png"),
+                  width: 158.0,
+                  height: 158.0,
+                  fit: BoxFit.cover,
+                ),
+              ), // Add button
+            ),
+            Positioned(
+              bottom: -20,
+              right: 10,
+              child: isInCart
+                  ? _buildCartButtons(context, ref, item)
+                  : Material(
+                      elevation: 1.0,
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      child: TextButton(
+                        onPressed: () {
+                          ref.read(cartProvider.notifier).addItem(item);
+                        },
+                        style: ButtonStyle(
+                          overlayColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                          padding:
+                              MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 15),
+                          ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.white,
+                          ),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6.0),
+                          ),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Add",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFF121212),
+                                ),
+                              ),
+                              Text(
+                                "Customization",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFFA6A6A6),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+            )
+          ]),
+
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    item.itemName,
+                    style: const TextStyle(
+                        fontSize: 16.0, fontWeight: FontWeight.w500),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // Item Price
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                  child: Text(
+                    '₹${item.itemPrice.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF307A59)),
+                  ),
+                ),
+              ],
+            ),
+          ) // Item Name
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCartButtons(
+      BuildContext context, WidgetRef ref, CoffeeItemModel item) {
+    int itemCount = ref.read(cartProvider.notifier).getItemCount(item);
+
+    return Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: const BorderRadius.all(Radius.circular(8))),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            onPressed: () {
+              ref.read(cartProvider.notifier).removeItem(item);
+            },
+            icon: const Icon(
+              Icons.remove_circle,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            itemCount.toString(),
+            style: const TextStyle(fontSize: 16.0, color: Colors.white),
+          ),
+          IconButton(
+            onPressed: () {
+              ref.read(cartProvider.notifier).addItem(item);
+            },
+            icon: const Icon(
+              Icons.add_circle,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
